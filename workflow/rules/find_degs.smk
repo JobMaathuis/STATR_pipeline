@@ -1,0 +1,48 @@
+rule compute_coverage:
+    message: 'computing coverage of {wildcards.sample}'
+    input:
+        bed = config['wdir'] + config['result'] + '3.decompiled/{sample}.bed',
+        gff = config['wdir'] + config['result'] + '4.meta_analysis/' + config['genome'] + '.gff'
+    benchmark:
+        'benchmarks/compute_coverage_{sample}.txt'
+    output:
+        config['wdir'] + config['result'] + '5.differential_expression/{sample}.cov'
+    shell:
+        'mkdir -p ' + config['wdir'] + config['result'] + '5.differential_expression;'
+        'bedtools coverage -a {input.gff} -b {input.bed} -s > {output}'
+
+
+rule format_deseq_input:
+    message: 'formating deseq inputs'
+    input:
+        expand(config['wdir'] + config['result'] + '5.differential_expression/{sample}.cov', sample=config['samples'])
+    benchmark:
+        'benchmarks/format_deseq_input.txt'
+    output:
+        config['wdir'] + config['result'] + '5.differential_expression/DESeq_input.txt'
+    shell:
+        'python3 ' + config['wdir'] + config['resources'] + config['py_scripts'] + 'FormatDESeqInput.py -i {input} -o {output}'
+
+
+rule run_deseq:
+    message: "running DESeq"
+    input:
+        deseq = config['wdir'] + config['result'] + '5.differential_expression/DESeq_input.txt',
+    benchmark:
+        'benchmarks/run_deseq.txt'
+    output:
+        touch('deseq.done')
+    params:
+        design = config['wdir'] + config['files'] + 'Design_sheet.txt'
+    shell:
+        'Rscript ' + config['wdir'] + config['resources'] + config['r_scripts'] + 'RunDESeq.R -i {input.deseq} -d {params.design} -o ' + config['wdir'] + config['result']
+
+
+rule move_txt_files:
+    message: 'moving .txt files'
+    input: 
+        'deseq.done'
+    output:
+        touch('all.done')
+    shell:
+        'mv ' + config['wdir'] + config['result'] + '*.txt ' + config['wdir'] + config['result'] + '5.differential_expression/'

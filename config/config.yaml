@@ -1,0 +1,28 @@
+# working directory
+wdir: /homes/jmaathuis/Documents/STATR_pipeline/
+
+# resources
+resources: resources/
+py_scripts: scripts/Python_scripts/
+r_scripts: scripts/R_scripts/
+trimmomatic: Trimmomatic-0.39/trimmomatic-0.39.jar
+
+# results
+result: result/
+
+# workflow
+rules: workflow/rules/
+smk: .smk
+
+# files/samples
+files: resources/example_files/
+samples:
+    Eco_Ctrl1: Eco_Ctrl1
+    Eco_Ctrl2: Eco_Ctrl2
+    Eco_Exp1: Eco_Exp1
+    Eco_Exp2: Eco_Exp1
+fastq: .fastq.gz
+adapter: RiboSeq_adapter_as.fa
+
+# genome
+genome: NC_000913.3
