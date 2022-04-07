@@ -1,5 +1,5 @@
 # Simple Translatome Analysis Tool for Ribo-Seq (STATR) pipeline
-Enviromental factors can have a huge impact on the condition of a cell. This condition may be reflected by the gene expression. Using Ribo-Seq this gene expression can be accuratly measured. Ribo-seq, also known as ribosome profiling, is a next-generation sequencing (NGS) technology, which can analyse the ribosome-protected mRNAs. Ribo-Seq has some major advantegous compared to similar techniques. In contrast to similar technique, Ribo-Seq analyses the messenger-RNA (mRNA) that is currently being translated on a ribosome. This provides a more accurate overview of the protein levels in a cell and can therefore be used to compare cells under different conditions.
+Enviromental factors can have a huge impact on the condition of a cell. This condition may be reflected by the gene expression. Using Ribo-Seq this gene expression can be accuratly measured. Ribo-seq, also known as ribosome profiling, is a next-generation sequencing (NGS) technology, which can analyse the ribosome-protected mRNAs. Ribo-Seq has some major advantegouses compared to similar techniques. In contrast to similar technique, Ribo-Seq analyses the messenger-RNA (mRNA) that is currently being translated on a ribosome insteaf of all mRNA in the cell. This provides a more accurate overview of the protein levels in a cell and can therefore be used to compare cells under different conditions.
 
 In order to compare the Ribo-Seq data from different cells this pipeline was created. The pipeline can have multiple samples (with repeats) as input and creates the following outpus:
 * Dendogram
@@ -57,7 +57,14 @@ Open a terminal in the resources folder and execute the following commands:
 All of the R packages can be installed by executing the `InstallPacakges.R` script
 
 ## Usage
-In order te use the pipeline the config file needs to be configured. The configfile can be found in `config/config.yaml`. Change the following paths in this file:
+Firstly, the following files are needed:
+
+* at least two input files (gzipped Ribo-Seq fastq files)
+* reference genome, in both .fa and .gff3 format
+* Ribo-Seq adapter file in .fa format
+* Design sheet (edit example in the resources directory)
+
+Secondly, theconfig file needs to be configured. The configfile can be found in `config/config.yaml`. Change the following paths in this file:
 
 * wdir: path to your working direcotry
 * files: path to your input files (relative to the working directory)

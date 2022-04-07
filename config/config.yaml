@@ -12,17 +12,17 @@ result: result/
 
 # workflow
 rules: workflow/rules/
-smk: .smk
 
-# files/samples
+# needed files 
 files: resources/example_files/
 samples:
     Eco_Ctrl1: Eco_Ctrl1
     Eco_Ctrl2: Eco_Ctrl2
     Eco_Exp1: Eco_Exp1
     Eco_Exp2: Eco_Exp1
-fastq: .fastq.gz
-adapter: RiboSeq_adapter_as.fa
-
-# genome
+adapter: RiboSeq_adapter_as.fa  
 genome: NC_000913.3
+
+# extensions
+fastq: .fastq.gz
+smk: .smk
