@@ -59,10 +59,11 @@ suppressPackageStartupMessages({library(gplots)})
 palette <-colorRampPalette(brewer.pal(9,"GnBu"))(100)
 hierarchy <- hclust(distances)
 
-print ("Print Dendrogram_and_heatmap.")
-jpeg(paste(out_path, "Dendrogram_and_heatmap.jpeg", sep=""), height = 500, width = 500)
-heatmap.2(distance_matrix,Rowv=as.dendrogram(hierarchy), symm=TRUE, trace="none", 
-          col=rev(palette))
+library(pheatmap)
+print ("Print heatmap.")
+jpeg(paste(out_path, "Heatmap.jpeg", sep=""), height = 500, width = 500)
+pheatmap(distance_matrix) #,Rowv=as.dendrogram(hierarchy), symm=TRUE, trace="none", 
+          #col=rev(palette))
 dev.off()
 print ("Done.")
 

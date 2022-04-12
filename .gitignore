@@ -1,0 +1,15 @@
+.snakemake/*
+
+result/*
+!result/.gitkeep
+
+benchmarks/*
+
+resources/example_files
+
+index.done
+deseq.done
+all.done
+
+logs/*
+!logs/.gitkeep

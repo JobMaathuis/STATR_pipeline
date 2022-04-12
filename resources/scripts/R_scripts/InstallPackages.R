@@ -4,6 +4,7 @@ BiocManager::install("DESeq2")
 BiocManager::install("RColorBrewer")
 BiocManager::install("gplots")
 
+install.packages("pheatmap")
 install.packages("getopt")
 install.packages("optparse")
 install.packages("data.table")
