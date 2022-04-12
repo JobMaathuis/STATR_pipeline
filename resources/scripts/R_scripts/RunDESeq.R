@@ -60,9 +60,9 @@ palette <-colorRampPalette(brewer.pal(9,"GnBu"))(100)
 hierarchy <- hclust(distances)
 
 print ("Print Dendrogram_and_heatmap.")
-pdf(paste(out_path, "Dendrogram_and_heatmap.pdf", sep=""), height = 50, width = 50)
+jpeg(paste(out_path, "Dendrogram_and_heatmap.jpeg", sep=""), height = 500, width = 500)
 heatmap.2(distance_matrix,Rowv=as.dendrogram(hierarchy), symm=TRUE, trace="none", 
-          col=rev(palette), margins=c(12,8))
+          col=rev(palette))
 dev.off()
 print ("Done.")
 
