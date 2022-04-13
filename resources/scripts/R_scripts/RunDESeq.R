@@ -62,8 +62,7 @@ hierarchy <- hclust(distances)
 library(pheatmap)
 print ("Print heatmap.")
 jpeg(paste(out_path, "Heatmap.jpeg", sep=""), height = 500, width = 500)
-pheatmap(distance_matrix) #,Rowv=as.dendrogram(hierarchy), symm=TRUE, trace="none", 
-          #col=rev(palette))
+pheatmap(distance_matrix) 
 dev.off()
 print ("Done.")
 
