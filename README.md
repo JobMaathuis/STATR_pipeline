@@ -137,19 +137,19 @@ The following packages are installed using Bioconda, which should be first insta
 `conda config --add channels conda-forge`
 
 #### Bowtie2
-Bowtie2 can be installed as follows:
+Bowtie2 (v 2.4.2) can be installed as follows:
 
-`conda install -c bioconda bowtie2`
+`conda install -c bioconda bowtie2=2.4.2`
 
 #### Samtools 
-Samtools can be installed as follows:
+Samtools (v 1.11) can be installed as follows:
 
-`conda install -c bioconda samtools`
+`conda install -c bioconda samtools=1.11`
 
 #### Bedtools 
-Samtools can be installed as follows:
+Samtools (v 2.30.0) can be installed as follows:
 
-`conda install -c bioconda bedtools` 
+`conda install -c bioconda bedtools=2.30.0` 
 
 
 ### R packages
