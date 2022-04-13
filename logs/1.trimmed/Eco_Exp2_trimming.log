@@ -1,0 +1,7 @@
+TrimmomaticSE: Started with arguments:
+ -threads 2 -phred33 /homes/jmaathuis/Documents/STATR_pipeline/resources/example_files/Eco_Exp2.fastq.gz /homes/jmaathuis/Documents/STATR_pipeline/result/1.trimmed/Eco_Exp2_trimmed.fastq.gz ILLUMINACLIP:/homes/jmaathuis/Documents/STATR_pipeline/resources/example_files/RiboSeq_adapter_as.fa:2:30:6 SLIDINGWINDOW:4:15 MINLEN:12
+Using Long Clipping Sequence: 'AAGATCGGAAGAGCACACGTCTGAACTCCAGTCACGCCAATATCTCGTAT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG'
+ILLUMINACLIP: Using 0 prefix pairs, 2 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Reads: 750000 Surviving: 726749 (96,90%) Dropped: 23251 (3,10%)
+TrimmomaticSE: Completed successfully

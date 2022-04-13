@@ -1,7 +1,8 @@
 .snakemake/*
 
 result/*
-!result/.gitkeep
+!result/PCA_(example).pdf
+!result/Heatmap_(example).jpeg
 
 benchmarks/*
 
@@ -11,6 +12,3 @@ resources/Trimmomatic-0.39
 index.done
 deseq.done
 all.done
-
-logs/*
-!logs/.gitkeep
