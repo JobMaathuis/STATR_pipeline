@@ -1,6 +1,3 @@
-Warning message:
-In DESeqDataSet(se, design = design, ignoreRank) :
-  some variables in design formula are characters, converting to factors
 estimating size factors
 estimating dispersions
 gene-wise dispersion estimates

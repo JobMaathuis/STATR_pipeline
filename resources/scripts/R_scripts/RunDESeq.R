@@ -43,6 +43,9 @@ design_table <- read.table(d_sheet, sep="\t", row.names = 1, header=T)
 conditions <- as.character(design_table[,1])
 
 exp_cond <- data.frame(row.names=colnames(cov_data), condition = conditions)
+print(str(exp_cond))
+exp_cond$condition <- as.factor(exp_cond$condition)
+print(str(exp_cond))
 DESeq_dataset <- DESeqDataSetFromMatrix(countData=cov_data, colData=exp_cond, design=~condition)
 print ("Start DESeq2")
 DESeq_norm <- DESeq(DESeq_dataset)
@@ -55,14 +58,15 @@ rownames(distance_matrix) <- colnames(distance_matrix)
 
 suppressPackageStartupMessages({library(RColorBrewer)})
 suppressPackageStartupMessages({library(gplots)})
+suppressPackageStartupMessages({library(pheatmap)})
 
 palette <-colorRampPalette(brewer.pal(9,"GnBu"))(100)
 hierarchy <- hclust(distances)
 
-library(pheatmap)
+suppressPackageStartupMessages({library(RColorBrewer)})
 print ("Print heatmap.")
 jpeg(paste(out_path, "Heatmap.jpeg", sep=""), height = 500, width = 500)
-pheatmap(distance_matrix) 
+(distance_matrix) 
 dev.off()
 print ("Done.")
 
