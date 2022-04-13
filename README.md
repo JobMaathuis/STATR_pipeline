@@ -87,7 +87,7 @@ Parses the genome annotation of the file to a readable and clean format (GFF3)
 
 `rule calculate_ribosome_density`
 
-Exploits the periodicity in a way that the average ribosome density over a coding DNA sequence.
+Exploits the periodicity in a way that the average ribosome density over a coding DNA sequence can be calculated
 
 `rule generate profile`
 
