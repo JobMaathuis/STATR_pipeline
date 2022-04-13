@@ -168,7 +168,7 @@ Secondly, the config file needs to be configured. The config file can be found i
 * wdir: path to your working directory
 * samples: name of the different samples
 * adapter: name of the adapter file 
-* genome: name of the genome file
+* genome: name of the genome
 
 The pipeline can be used as follows:
 

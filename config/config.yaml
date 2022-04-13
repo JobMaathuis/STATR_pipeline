@@ -1,5 +1,5 @@
-# working directory
-wdir: /homes/jmaathuis/Documents/STATR_pipeline/
+# working directory, change path
+wdir: /path/to/working/directory
 
 # resources
 resources: resources/
@@ -16,12 +16,17 @@ rules: workflow/rules/
 # needed files 
 files: resources/example_files/
 samples:
-    Eco_Ctrl1: Eco_Ctrl1
-    Eco_Ctrl2: Eco_Ctrl2
-    Eco_Exp1: Eco_Exp1
-    Eco_Exp2: Eco_Exp1
-adapter: RiboSeq_adapter_as.fa  
-genome: NC_000913.3
+    # change name of samples
+    Sample1: Sample1 
+    Sample2: Sample2 
+    # .
+    # .
+    # .
+    # Sample i: sample i
+# change name of adapter
+adapter: name_of_adapter.fa  
+# change name of genome
+genome: name_of_genome
 
 # extensions
 fastq: .fastq.gz
