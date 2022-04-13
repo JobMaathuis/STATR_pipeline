@@ -8,6 +8,8 @@ In order to compare the Ribo-Seq data from different cells this pipeline was cre
 * Principal Component Analysis (PCA) plot
 * Heatmap
 
+Example outputs of the PCA plot and heatmap can be found in the result directory
+
 ## Pipeline overview
 STATR pipeline directed acyclic graph (dag)
 
