@@ -1,12 +1,11 @@
 rule compute_coverage:
+    """ Computes the coverage of each of the given genome features """ 
     message: 'computing coverage of {wildcards.sample}'
     input:
         bed = config['wdir'] + config['result'] + '3.decompiled/{sample}.bed',
         gff = config['wdir'] + config['result'] + '4.meta_analysis/' + config['genome'] + '.gff'
     log:
         config['wdir'] + 'logs/5.differential_expression/{sample}_coverage.log'
-    benchmark:
-        'benchmarks/compute_coverage_{sample}.txt'
     output:
         config['wdir'] + config['result'] + '5.differential_expression/{sample}.cov'
     shell:
@@ -15,6 +14,7 @@ rule compute_coverage:
 
 
 rule format_deseq_input:
+    """ Combines all of the samples in one file in a format that can be used by DESeq2 """
     message: 'formating deseq inputs'
     input:
         expand(config['wdir'] + config['result'] + '5.differential_expression/{sample}.cov', sample=config['samples'])
@@ -27,6 +27,7 @@ rule format_deseq_input:
 
 
 rule run_deseq:
+    """ Runs a DESeq2 analysis on the samples, which returns a PCA plot and a heatmap as final output """
     message: "running DESeq"
     input:
         deseq = config['wdir'] + config['result'] + '5.differential_expression/DESeq_input.txt',
@@ -41,6 +42,7 @@ rule run_deseq:
 
 
 rule move_txt_files:
+    """ Moves the less interesting .txt files to its corresponding directory """
     message: 'moving .txt files'
     input: 
         'deseq.done'

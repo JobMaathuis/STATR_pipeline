@@ -1,4 +1,5 @@
 rule convert_sam_to_bam:
+    """ Converts the .sam files to .bam files, which is a binary format and advantageous for computer programs """
     message: 'converting .sam to .bam of {wildcards.sample}'
     input:
         config['wdir'] + config['result'] + '2.aligned/{sample}.sam'
@@ -12,6 +13,7 @@ rule convert_sam_to_bam:
 
 
 rule sort_bam:
+    """ Sorts the .bam files by leftmost coordinates using samtools """
     message: 'sorting .bam file of {wildcards.sample}'
     input:
         config['wdir'] + config['result'] + '3.decompiled/{sample}.bam'
@@ -24,6 +26,7 @@ rule sort_bam:
 
 
 rule convert_bam_to_bed:
+    """ In order to store the genomic regions by coordinates and annotation the .bam files are converted to .bed files using bedtools """
     message: 'converting .bam to .bed of {wildcards.sample}'
     input:
         config['wdir'] + config['result'] + '3.decompiled/{sample}_sorted.bam'

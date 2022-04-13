@@ -1,4 +1,5 @@
 rule parse_genome_annotation:
+    """ Parses the genome annotation of the file to a readable and clean format (GFF3) """
     message: 'parsing genome annotation of ' + config['genome']
     input:
         config['wdir'] + config['files'] + config['genome'] + '.gff3'
@@ -12,6 +13,7 @@ rule parse_genome_annotation:
 
 
 rule calculate_ribosome_density:
+    """ Exploits the periodicity in a way that the average ribosome density over a coding DNA sequence can be calculated"""
     message: 'checking periodicity of {wildcards.sample}'
     input:
         bed = config['wdir'] + config['result'] + '3.decompiled/{sample}.bed',
@@ -25,6 +27,7 @@ rule calculate_ribosome_density:
 
 
 rule generate_profile:
+    """ Generates a genome-wide Ribo-Seq profile """
     message: 'generating profile of {wildcards.sample}'
     input:
         bed = config['wdir'] + config['result'] + '3.decompiled/{sample}.bed',

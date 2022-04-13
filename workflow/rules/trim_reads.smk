@@ -1,4 +1,5 @@
 rule trim_reads:
+    """ Trims the input files where it removes the adapter and other illumina-specific sequences """
     message: 'trimming reads of {wildcards.sample}'
     input:
         config['wdir'] + config['files'] + '{sample}' + config['fastq']

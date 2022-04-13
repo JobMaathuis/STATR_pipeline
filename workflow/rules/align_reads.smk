@@ -1,4 +1,5 @@
 rule index_genome:
+    """ Indexes the genome using Bowtie2 (which uses FM index) """
     message: 'indexing ' + config['genome']
     input:
         genome = config['wdir'] + config['files'] + config['genome'] + '.fa'
@@ -14,6 +15,7 @@ rule index_genome:
 
 
 rule align_reads:
+    """ Aligns the trimmed reads to the indexed genome, which creates a .sam file for every sample """
     message: 'aliging reads of {wildcards.sample}'
     input: 
         check = 'index.done',
