@@ -30,7 +30,7 @@ STATR_pipeline/
 │    ├── scripts/
 │    │   ├── Python_scripts/
 │    │   │   ├── CheckPeriodicity.py
-│    │   │ 	 ├── FormatDESeqInput.py
+│    │   │   ├── FormatDESeqInput.py
 │    │   │   ├── GenerateProfile.py
 │    │   │   └── ParseGenomeAnnotation.py
 │    │   └── R_scripts/
