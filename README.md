@@ -1,27 +1,29 @@
 # Simple Translatome Analysis Tool for Ribo-Seq (STATR) pipeline
-Enviromental factors can have a huge impact on the condition of a cell. This condition may be reflected by the gene expression. Using Ribo-Seq this gene expression can be accuratly measured. Ribo-seq, also known as ribosome profiling, is a next-generation sequencing (NGS) technology, which can analyse the ribosome-protected mRNAs. Ribo-Seq has some major advantegouses compared to similar techniques. In contrast to similar technique, Ribo-Seq analyses the messenger-RNA (mRNA) that is currently being translated on a ribosome insteaf of all mRNA in the cell. This provides a more accurate overview of the protein levels in a cell and can therefore be used to compare cells under different conditions.
+Environmental factors can have a huge impact on the condition of a cell. This condition may be reflected by the gene expression. Using Ribo-Seq this gene expression can be accurately measured. Ribo-seq, also known as ribosome profiling, is a next-generation sequencing (NGS) technology, which can analyse the ribosome-protected mRNAs. Ribo-Seq has some major advanteges compared to similar techniques. In contrast to similar technique, Ribo-Seq analyses the messenger-RNA (mRNA) that is currently being translated on a ribosome, also known as the translatome, instead of all mRNA in the cell. This provides a more accurate overview of the protein levels in a cell and can therefore be used to compare cells under different conditions.
 
-In order to compare the Ribo-Seq data from different cells this pipeline was created. The pipeline can have multiple samples (with repeats) as input and creates the following outpus:
+In order to compare the Ribo-Seq data from different cells this pipeline was created. The pipeline can have multiple samples (with repeats) as input and creates the following outputs:
 
 * Genome-wide Ribo-Seq profile (can be visualised with free software like Integrative Genomic Viewer)
-* File with average ribosome densities realtive to the start codon
+* Ribosome densities file
 * Principal Component Analysis (PCA) plot
-* Dendogram
 * Heatmap
 
 ## Pipeline overview
+STATR pipeline directed acyclic graph (dag)
+
 ![STATR pipeline directed acyclic graph](https://github.com/JobMaathuis/STATR_pipeline/blob/main/images/dag.png)
 
-The function of each rules is explaned under the Rules section
+The function of each rules is explained under the Rules section
 
-## Repository structre
+## Repository structure
 
 ```
-eindopdracht/
+STATR_pipeline/
 ├── config/
 │   ├── config.yaml
 ├── images/
 │   └── dag.png
+├── logs/
 ├── resources/
 │    ├── scripts/
 │    │   ├── Python_scripts/
@@ -44,9 +46,10 @@ eindopdracht/
 │   │   ├── find_degs.smk
 │   │   └── trim_reads.smk
 │   └── main.smk
+├── LICENSE
 └── README.md
-```
 
+```
 
 
 ## Rules
@@ -54,7 +57,7 @@ The following rules were used in the snakemake pipeline:
 
 ` rule trim_reads` 
 
-Trims the input files where it reomoves the adapter and other illuminca-specific seqeunces.
+Trims the input files where it removes the adapter and other illumina-specific sequences.
 
 `rule index_genome`
 
@@ -74,13 +77,13 @@ Sorts the .bam files by leftmost coordinates using samtools
 
 `rule convert_bam_to_bed`
 
-In order to store the genomic regions by coordinates and annotation the.bam files are converted to .bed files using bedtools
+In order to store the genomic regions by coordinates and annotation the .bam files are converted to .bed files using bedtools
 
 `rule parse_genome_anntation`
 
 Parses the genome annotation of the file to a readable and clean format (GFF3)
 
-`rule check_periodicity`
+`rule calculate_ribosome_density`
 
 Exploits the periodicity in a way that the average ribosome density over a coding DNA sequence.
 
@@ -98,7 +101,7 @@ Combines all of the samples in one file in a format that can be used by DESeq2
 
 `rule run_deseq`
 
-Runs a DESeq2 analysis on the samples, which returns a PCA plot, dendogram and a heatmap as final output
+Runs a DESeq2 analysis on the samples, which returns a PCA plot and a heatmap as final output
 
 `rule move_txt_files`
 
@@ -108,7 +111,7 @@ Moves the less interesting .txt files to its corresponding directory
 The following installations need to be executed in order to use the pipeline:
 
 ### Snakemake
-Snakemake can be installed by executing the following coomand:
+Snakemake can be installed by executing the following command:
 
 `pip install snakemake`
 
@@ -119,7 +122,7 @@ Open a terminal in the resources folder and execute the following commands:
 `unzip Trimmomatic-0.39.zip`
 
 ### Bioconda
-The following pacakges are installed using Bioconda, which should be frist installed:
+The following packages are installed using Bioconda, which should be first installed:
 
 `curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`
 
@@ -132,7 +135,7 @@ The following pacakges are installed using Bioconda, which should be frist insta
 `conda config --add channels conda-forge`
 
 #### Bowtie2
-Bowtie2 can be installed as as follows:
+Bowtie2 can be installed as follows:
 
 `conda install -c bioconda bowtie2`
 
@@ -148,7 +151,7 @@ Samtools can be installed as follows:
 
 
 ### R packages
-All of the R packages can be installed by executing the `InstallPacakges.R` script
+All of the R packages can be installed by executing the `InstallPackages.R` script
 
 ## Usage
 Firstly, the following files are needed:
@@ -158,9 +161,9 @@ Firstly, the following files are needed:
 * Ribo-Seq adapter file in .fa format
 * Design sheet (edit example in the resources directory)
 
-Secondly, theconfig file needs to be configured. The configfile can be found in `config/config.yaml`. Change the following paths in this file:
+Secondly, the config file needs to be configured. The config file can be found in `config/config.yaml`. Change the following paths in this file:
 
-* wdir: path to your working direcotry
+* wdir: path to your working directory
 * files: path to your input files (relative to the working directory)
 * samples: name of the different samples
 * adapter: name of the adapter file (which should be placed in the same directory as the input files)
@@ -171,9 +174,6 @@ The pipeline can be used as follows:
 `snakemake --snakefile {path to snakefile} --cores {amount of cores}`
 
 ## Contact
-The owner of the repository can be contactes using the following contact information:
-
-Job Maathuis
-50267
+The owner of the repository can be contacted by emailing to:
 
 j.maathuis@st.hanze.nl

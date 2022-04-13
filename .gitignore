@@ -6,6 +6,7 @@ result/*
 benchmarks/*
 
 resources/example_files
+resources/Trimmomatic-0.39
 
 index.done
 deseq.done
