@@ -156,20 +156,19 @@ Samtools can be installed as follows:
 All of the R packages can be installed by executing the `InstallPackages.R` script
 
 ## Usage
-Firstly, the following files are needed:
+Firstly, the files listed below are needed. Put these in the `resources/files` directory
 
 * at least two input files (gzipped Ribo-Seq fastq files)
 * reference genome, in both .fa and .gff3 format
 * Ribo-Seq adapter file in .fa format
-* Design sheet (edit example in the resources directory)
+* Design sheet (edit example in the files directory)
 
 Secondly, the config file needs to be configured. The config file can be found in `config/config.yaml`. Change the following paths in this file:
 
 * wdir: path to your working directory
-* files: path to your input files (relative to the working directory)
 * samples: name of the different samples
-* adapter: name of the adapter file (which should be placed in the same directory as the input files)
-* genome: name of the NCBI reference sequence of the used genome (which should be placed in the same directory as the input files)
+* adapter: name of the adapter file 
+* genome: name of the genome file
 
 The pipeline can be used as follows:
 
