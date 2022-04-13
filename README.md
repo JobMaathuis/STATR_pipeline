@@ -37,8 +37,7 @@ STATR_pipeline/
 │    │       ├── InstallPacakges.R
 │    │       └── RunDESeq.R
 │    └── files/
-│        ├── Design_sheet.txt
-│        └── RiboSeq_adapter_as.fa
+│        └── Design_sheet.txt
 ├── result/    
 ├── workflow/
 │   ├── rules/
